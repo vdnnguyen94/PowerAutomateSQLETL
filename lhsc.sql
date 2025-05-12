@@ -1,3 +1,17 @@
+--De-identified Query from Visits + Patients
+SELECT 
+    p.patient_uid,                             -- Use internal UUID instead of name
+    v.visit_id,
+    v.clinic,
+    v.visit_date,
+    v.status,
+    v.discharge_date,
+    v.report_code,
+    v.document_type,
+    v.encounter_notes
+FROM Visits v
+JOIN Patients p ON v.patient_id = p.patient_id
+WHERE v.clinic = 'Cardiac' AND v.is_processed = 0;
 -- Get all patients with PHI and internal tracking info
 SELECT 
     patient_id,
